@@ -29,7 +29,7 @@ public class HibernateConfiguration {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[] { "com.cruds.pos.entity" });
+        sessionFactory.setPackagesToScan(new String[] { "com.cruds.pos.bean" });
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
      }
