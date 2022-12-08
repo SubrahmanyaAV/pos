@@ -1,7 +1,5 @@
 package com.cruds.pos.form;
 
-import java.util.Date;
-
 public class CustomerFormBean {
 	
 	private String userID;
@@ -12,7 +10,7 @@ public class CustomerFormBean {
 	
 	private String firstName; 
 	private String lastName; 
-	private Date dateOfBirth; 
+	private String dateOfBirth; 
 	private String gender;
 	private String street; 
 	private String location; 
@@ -67,11 +65,11 @@ public class CustomerFormBean {
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

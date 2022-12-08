@@ -1,7 +1,5 @@
 package com.cruds.pos.form;
 
-import java.util.Date;
-
 public class CartFormBean {
 	
 	private String userID;
@@ -11,13 +9,22 @@ public class CartFormBean {
 	private int loginStatus; 
 
 	private int cartID;
-	private String cartType;
 	private int cartQuantity;
+	private String cartType;
 	private double cost;
-	private Date orderDate;
+	private String orderDate;
 	
 	private String foodID; 
 	private String name; 
+	
+	@Override
+	public String toString() {
+		return "CartFormBean [userID=" + userID + ", loginStatus=" + loginStatus + ", cartID=" + cartID
+				+ ", cartQuantity=" + cartQuantity + ", cartType=" + cartType + ", cost=" + cost + ", orderDate="
+				+ orderDate + ", foodID=" + foodID + ", name=" + name + ", foodtype=" + foodtype + ", foodSize="
+				+ foodSize + ", foodQuantity=" + foodQuantity + ", price=" + price + "]";
+	}
+
 	private String foodtype; 
 	private String foodSize; 
 	private int foodQuantity;
@@ -84,11 +91,11 @@ public class CartFormBean {
 		this.cost = cost;
 	}
 
-	public Date getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 

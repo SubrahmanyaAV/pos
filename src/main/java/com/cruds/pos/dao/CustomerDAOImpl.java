@@ -1,6 +1,7 @@
 package com.cruds.pos.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -24,20 +25,38 @@ public class CustomerDAOImpl implements CustomerDAO{
 		
 		Session session = sf.openSession();		
 		session.beginTransaction();
-/*		
-		int row = 0;
-		String hql = "INSERT INTO Cart(cart_id,type,quantity,cost,orderDate,user_id,food_id,cart_id)" +
-						"SELECT cart_id,type,quantity,cost,orderDate,user_id,food_id,cart_id FROM Cart";
-		Query query = session.createQuery(hql);
-		row = query.executeUpdate();
 		
+		String hql = "INSERT INTO CartBean(cartQuantity,cartType,cost,orderDate,id,food)"   
+					+ "SELECT cartQuantity,cartType,cost,orderDate,id,food FROM CartBean";
+		Query query = session.createQuery(hql);
+		int row = query.executeUpdate();
+
 		session.close();
-		return row > 0;		
-*/		
-		session.save(cart);
+		return true;		
+		
+/*		session.save(cart);
 		session.getTransaction().commit();
 		session.close();
 		return true ;
+*/	}
+	
+	@Override
+	public CartBean edit(int cartID) {
+		Session session = sf.openSession();
+		String hql = "from CartBean c where c.cartID = ? ";
+
+		@SuppressWarnings("unchecked")
+		List<CartBean> list = session.createQuery(hql).setLong(0, cartID).list();
+		session.close();
+
+		if(list.size() > 0)
+		{
+			return list.get(0);
+		}
+		else 
+		{
+			return null;
+		}	
 	}
 
 	@Override
@@ -45,7 +64,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		Session session = sf.openSession();
 		session.beginTransaction();
 		
-		int row = 0;
+/*		int row = 0;
 		String hql = "UPDATE CartBean set type = :type ,quantity = :quantity ,cost = :cost , orderDate = :OrderDate"
 						+ "where cartID = :cartID";
 		Query query = session.createQuery(hql);
@@ -57,39 +76,39 @@ public class CustomerDAOImpl implements CustomerDAO{
 		query.setParameter("customer_id",cart.getCredential().getId());
 		query.setParameter("food_id",cart.getFood().getF_id());
 		row = query.executeUpdate();
-		
+*/		
+		session.update(cart);
+		System.out.println(cart);
 		session.getTransaction().commit();
 		session.close();
-		
-		return row > 0;
+		return true;
+//		return row > 0;
 		
 	}
 
 	@Override
-	public String confirmOrder(OrderBean order, ArrayList<CartBean> cart) {
+	public OrderBean confirmOrder(OrderBean order, ArrayList<CartBean> cart) {
 		
 		Session session = sf.openSession();
 		session.getTransaction().begin();
 		
 		session.save(order);
-		
 		session.getTransaction().commit();
 		session.close();
-
-		return null;
+		return order;
 	}
 
 	@Override
-	public String cancelOrder(String orderID) {
+	public OrderBean cancelOrder(String orderID) {
 		Session session = sf.openSession();
 		session.getTransaction().begin();
-		String ob = (String) session.load(OrderBean.class, orderID);
+		OrderBean ob = (OrderBean) session.load(OrderBean.class, orderID);
 //		orderID = (String) session.load(Order.class, orderID);
 		session.delete(ob);
 		session.getTransaction().commit();
 		session.close();
+		return ob;
 		
-		return orderID;
 	}
 
 	@Override
@@ -106,12 +125,11 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public ArrayList<CartBean> viewCart(Long id) {
+	public ArrayList<CartBean> viewCart() {
 		Session session = sf.openSession();
 		@SuppressWarnings("unchecked")
 		ArrayList<CartBean> list = (ArrayList<CartBean>)session
-							   .createQuery("FROM CartBean where id = ? ")
-							   .setLong(0, id)
+							   .createQuery("FROM CartBean")
 							   .list();
 		
 		session.close();

@@ -24,7 +24,6 @@ public class UserController {
 	@Autowired
 	private UserServiceImpl userService;
 	
-
 	@RequestMapping(value = "user.html", method= RequestMethod.GET)
 	public String ShowProfileForm(Model model)
 	{
@@ -56,6 +55,12 @@ public class UserController {
 		return "login";
 	}
 	
+	@RequestMapping(value="/userlist.html")
+	public String showUserPage()
+	{
+		return "userlist";
+	}
+	
 /*	@RequestMapping(value="/user-del-{id}", method=RequestMethod.GET)
 	public String delete(@PathVariable("id") Long id)
 	{
@@ -75,14 +80,27 @@ public class UserController {
 	@RequestMapping(value="editUser.html" , method=RequestMethod.POST)
 	public String update(@ModelAttribute("ProfileBean") ProfileBean user )
 	{
-	//	userService.update(user);
+		userService.update(user);
 		System.out.println(user);
 		return "redirect:user.html";
 	}
 	
-/*	
+	
+    @RequestMapping(value = { "/searchuser.html"}, method = RequestMethod.GET)
+    public String showSearchPage(ModelMap model) {
+		model.addAttribute("user", new CredentialsBean());
+        return "user";
+    }
+	
+	@RequestMapping(value = { "/searchuser.html"}, method = RequestMethod.POST)
+    public String search(@ModelAttribute CredentialsBean user, Model model) {
+		Set<CredentialsBean> userList = userService.searchUser(user.getId(), user.getUserID());
+		model.addAttribute("USERLIST", userList);
+        return "user";
+    }
+/* 
   	@RequestMapping(value = { "/userinactive-{id}" }, method = RequestMethod.GET)
-    public String inactivateUser(@PathVariable Long id, Model model) {
+    public String inActivate(@PathVariable Long id, Model model) {
 		if(userService.inActivate(id))
 		{
 			model.addAttribute("message", "User Inactivated Successfully");
@@ -92,21 +110,23 @@ public class UserController {
 		{
 			model.addAttribute("error", "Error while Inactivating User!");
 		}
-		return "search";
+		return "user";
     }
-
-   @RequestMapping(value = { "/searchuser"}, method = RequestMethod.GET)
-    public String showSearchPage(ModelMap model) {
-		model.addAttribute("user", new CredentialsBean());
-        return "search";
-    }
-	
-	@RequestMapping(value = { "/searchuser"}, method = RequestMethod.POST)
-    public String search(@ModelAttribute CredentialsBean user, Model model) {
-		Set<CredentialsBean> userList = userService.searchUser(user.getId(), user.getUserID());
-		model.addAttribute("USERLIST", userList);
-        return "search";
-    }
-    
 */
+	@RequestMapping(value="/userinactive-{id}", method=RequestMethod.GET)
+	public String editCred(@PathVariable("id") Long id,Model model)
+	{
+		model.addAttribute("command",userService.findUserById(id));
+		return "search";
+	}
+  	
+	@RequestMapping(value="inActivate.html" , method=RequestMethod.POST)
+	public String inActivatUser(@ModelAttribute("CredentialsBean") CredentialsBean user )
+	{
+		userService.inActivateUser(user);
+		System.out.println(user);
+		return "redirect:user.html";
+	}
+
+
  }

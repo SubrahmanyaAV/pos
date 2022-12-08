@@ -8,7 +8,7 @@ public class CartOrderFormBean {
 	private String cartType;
 	private int cartQuantity;
 	private double cost;
-	private Date orderDate;
+	private String orderDate;
 
 	private String orderID;
 	private Date orderDateO;
@@ -47,10 +47,10 @@ public class CartOrderFormBean {
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
-	public Date getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 	public String getOrderID() {

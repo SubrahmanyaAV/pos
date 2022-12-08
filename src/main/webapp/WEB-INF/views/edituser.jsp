@@ -24,7 +24,7 @@
 		<br /><br />
 		
   		<label>DOB</label>
-		<form:input type="date" path="dateOfBirth" readonly ="true"/>
+		<form:input type="date" path="dateOfBirth" />
 		<br />
 		<label>Gender</label>
 		<select name="gender" id="gender" readonly ="true">
@@ -58,7 +58,7 @@
 <%-- 	<label>Password</label>
 		<form:input type="password" path="password" />
 		<br />
- --%>		<input type="submit" value="update" />
+ --%>	<input type="submit" value="update" />
 	</form:form>
 
 

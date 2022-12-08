@@ -1,6 +1,8 @@
 package com.cruds.pos.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +13,9 @@ import com.cruds.pos.bean.StoreBean;
 import com.cruds.pos.dao.CustomerDAO;
 import com.cruds.pos.exception.POSException;
 import com.cruds.pos.form.CartFormBean;
+import com.cruds.pos.form.OrderFormBean;
 import com.cruds.pos.util.CartUtil;
+import com.cruds.pos.util.OrderUtil;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -19,6 +23,45 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	CustomerDAO dao;
 
+	@Override
+	public CartBean edit(int cartID) {
+		return dao.edit(cartID);
+	}
+
+	@Override
+	public boolean modifyCart(CartBean cart) throws POSException {
+		return dao.modifyCart(cart);
+	}
+
+	@Override
+	public OrderBean cancelOrder(String orderID) {
+		return dao.cancelOrder(orderID);
+	}
+
+/*	@Override
+	public ArrayList<StoreBean> viewStore(String city) {
+		return dao.viewStore(city);
+	}
+*/	
+	public Set<StoreBean> searchStore(String city)
+	{
+		Set<StoreBean> sb = new HashSet<>();
+		if(city != null && (city.trim().length() > 0 ))
+		{
+			sb.addAll(dao.viewStore(city));
+		}
+		return sb;
+	}
+
+	@Override
+	public ArrayList<CartBean > viewCart() {
+		return dao.viewCart();
+	}
+
+	@Override
+	public ArrayList<OrderBean> viewOrder() {
+		return dao.viewOrder();
+	}
 
 /*	@Override
 	public boolean addToCart(CartBean cart) {
@@ -27,39 +70,16 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 */
 	@Override
-	public boolean modifyCart(CartBean cart) throws POSException {
-		return dao.modifyCart(cart);
-	}
-
-	@Override
-	public String confirmOrder(OrderBean order, ArrayList<CartBean> cart) {
-		return dao.confirmOrder(order, cart);
-	}
-
-	@Override
-	public String cancelOrder(String orderID) {
-		return dao.cancelOrder(orderID);
-	}
-
-	@Override
-	public ArrayList<StoreBean> viewStore(String city) {
-		return dao.viewStore(city);
-	}
-
-	@Override
-	public ArrayList<CartBean > viewCart(Long id) {
-		return dao.viewCart(id);
-	}
-
-	@Override
-	public ArrayList<OrderBean> viewOrder() {
-		return dao.viewOrder();
-	}
-
-	@Override
-	public boolean addToCart(CartFormBean cart) {
+	public boolean addToCart(CartFormBean cart) throws POSException {
 		CartBean cb = CartUtil.getCartBeanForSave(cart);
 		return dao.addToCart(cb);
 	}
 
+	@Override
+	public OrderBean confirmOrder(OrderFormBean order, ArrayList<CartBean> cart) {
+		OrderBean ob = OrderUtil.getOrderSave(order);
+		return dao.confirmOrder(ob,cart);
+	}
+
+	
 }

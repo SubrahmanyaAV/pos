@@ -76,5 +76,14 @@ public class UserServiceImpl implements UserService{
 		return userSet;
 	}
 
+	@Override
+	public void inActivateUser(CredentialsBean user) {
+		dao.inActivateUser(user);
+	}
+
+	@Override
+	public CredentialsBean findUserById(Long id) {
+		return dao.findUserById(id);
+	}
 
 }

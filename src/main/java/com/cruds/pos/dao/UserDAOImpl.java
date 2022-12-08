@@ -118,33 +118,28 @@ public class UserDAOImpl implements UserDAO {
 	public boolean inActivate(Long id) {
 		Session session = sf.openSession();		
 		session.beginTransaction();
-		int row = 0;
-		String hql = "update user_credentials set isActive='N' where id=?";
+		String hql = "update CredentialsBean set isActive='N' where id=?";
 		Query query = session.createQuery(hql);
-		row = query.executeUpdate();
+		query.setParameter(0,1);
+		int row =  query.executeUpdate();
 		session.close();
 		return row > 0;
 	}
-
+	
 	@Override
-	public List<CredentialsBean> findByName(String userID) {
-
+	public void inActivateUser(CredentialsBean user) {
 		Session session = sf.openSession();
-		@SuppressWarnings("unchecked")
-		List<CredentialsBean> list =(List<CredentialsBean>) session
-		.createQuery("from CredentialsBean where userID like ? and isactive='Y' ")
-		.setString(0, userID)
-		.list(); 
-			
+		session.beginTransaction();
+		session.update(user);
+		System.out.println(user);
+		session.getTransaction().commit();
 		session.close();
-		return list;
-
 	}
 
 	@Override
 	public CredentialsBean findUserById(Long id) {
 		Session session = sf.openSession();
-		String hql = "from CredentialsBean where c.id = ? ";
+		String hql = "from CredentialsBean c where c.id = ? ";
 
 		@SuppressWarnings("unchecked")
 		List<CredentialsBean> list = session.createQuery(hql).setLong(0, id).list();
@@ -158,6 +153,21 @@ public class UserDAOImpl implements UserDAO {
 		{
 			return null;
 		}	
+	}
+
+	@Override
+	public List<CredentialsBean> findByName(String userID) {
+
+		Session session = sf.openSession();
+		@SuppressWarnings("unchecked")
+		List<CredentialsBean> list =(List<CredentialsBean>) session
+		.createQuery("from CredentialsBean where userID like ? and isActive='Y' ")
+		.setString(0, userID)
+		.list(); 
+			
+		session.close();
+		return list;
+
 	}
 
 }

@@ -18,7 +18,7 @@ import org.hibernate.annotations.ColumnDefault;
 public class CredentialsBean {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(length=6,name="userID")
@@ -35,7 +35,7 @@ public class CredentialsBean {
 	private int loginStatus = 1;   //(1 ,0)
 	
 	@Column(name="isActive", nullable = false)
-	private String isActive = "A";
+	private String isActive = "Y";
 	
 	@OneToMany(mappedBy="credentials",cascade = CascadeType.ALL)
 	private Set<OrderBean> orders;
@@ -49,6 +49,14 @@ public class CredentialsBean {
 		super();
 		this.userID = userID;
 		this.password = password;
+	}
+
+	public CredentialsBean(String userID, String userType, int loginStatus, String isActive) {
+		super();
+		this.userID = userID;
+		this.userType = userType;
+		this.loginStatus = loginStatus;
+		this.isActive = isActive;
 	}
 
 	public CredentialsBean(String userID, String password, String userType, int loginStatus, String isActive) {

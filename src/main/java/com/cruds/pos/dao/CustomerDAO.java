@@ -9,17 +9,19 @@ import com.cruds.pos.exception.POSException;
 
 public interface CustomerDAO {
 	
-	boolean addToCart(CartBean cart);
+	public boolean addToCart(CartBean cart) throws POSException;
+	
+	public CartBean edit(int cartID);
 	
 	boolean modifyCart(CartBean cart) throws POSException;
 	
-	String confirmOrder(OrderBean order, ArrayList<CartBean> cart);
+	OrderBean confirmOrder(OrderBean order, ArrayList<CartBean> cart);
 	
-	String cancelOrder(String orderID);
+	OrderBean cancelOrder(String orderID);
 	
 	ArrayList<StoreBean> viewStore(String city);
 	
-	ArrayList<CartBean> viewCart(Long id);
+	ArrayList<CartBean> viewCart();
 	
 	ArrayList <OrderBean> viewOrder();
 

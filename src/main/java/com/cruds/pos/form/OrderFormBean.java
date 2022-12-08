@@ -2,13 +2,19 @@ package com.cruds.pos.form;
 
 import java.util.Date;
 
-public class OrderCredFormBean {
+public class OrderFormBean {
 	
 	private String userID;
 	private String password;
 //	private String userType = "C";   //(admin or customer)
 //	private String isActive;
 	private int loginStatus;  
+	
+	private int cartID;
+	private String cartType;
+	private int cartQuantity;
+	private double cost;
+	private String orderDate;
 	
 	private String orderID;
 	private Date orderDateO;
@@ -20,7 +26,15 @@ public class OrderCredFormBean {
 	private String pincodeO;
 	private String mobileNum;
 	
-	public OrderCredFormBean() {
+	private String storeID;
+	private String name;
+	private String street;
+	private String mobileNo;
+	private String city;
+	private String state;
+	private String pincode;
+	
+	public OrderFormBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -119,6 +133,102 @@ public class OrderCredFormBean {
 
 	public void setMobileNum(String mobileNum) {
 		this.mobileNum = mobileNum;
+	}
+
+	public int getCartID() {
+		return cartID;
+	}
+
+	public void setCartID(int cartID) {
+		this.cartID = cartID;
+	}
+
+	public String getCartType() {
+		return cartType;
+	}
+
+	public void setCartType(String cartType) {
+		this.cartType = cartType;
+	}
+
+	public int getCartQuantity() {
+		return cartQuantity;
+	}
+
+	public void setCartQuantity(int cartQuantity) {
+		this.cartQuantity = cartQuantity;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public String getStoreID() {
+		return storeID;
+	}
+
+	public void setStoreID(String storeID) {
+		this.storeID = storeID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
 	}
 
 }

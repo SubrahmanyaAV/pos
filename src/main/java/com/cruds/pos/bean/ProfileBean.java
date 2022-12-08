@@ -16,13 +16,8 @@ import javax.persistence.Table;
 @Table(name="user_profile")
 public class ProfileBean implements Serializable{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="firstName",length=20, nullable = false)
@@ -32,7 +27,7 @@ public class ProfileBean implements Serializable{
 	private String lastName; 
 
 	@Column(name="dateOfBirth", nullable = false)
-	private Date dateOfBirth; 
+	private String dateOfBirth; 
 
 	@Column(name="gender",length=7, nullable = false)
 	private String gender;
@@ -66,7 +61,7 @@ public class ProfileBean implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProfileBean(String firstName, String lastName, Date dateOfBirth, String gender, String street,
+	public ProfileBean(String firstName, String lastName, String dateOfBirth, String gender, String street,
 			String location, String city, String state, String pincode, String mobileNo, String emailID,
 			CredentialsBean customer) {
 		super();
@@ -84,7 +79,7 @@ public class ProfileBean implements Serializable{
 		this.customer = customer;
 	}
 
-	public ProfileBean(String firstName, String lastName, Date dateOfBirth, String gender, String street,
+	public ProfileBean(String firstName, String lastName, String dateOfBirth, String gender, String street,
 			String location, String city, String state, String pincode, String mobileNo, String emailID) {
 		super();
 		this.firstName = firstName;
@@ -124,11 +119,11 @@ public class ProfileBean implements Serializable{
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

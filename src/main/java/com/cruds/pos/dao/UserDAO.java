@@ -16,15 +16,14 @@ public interface UserDAO {
 	
 	public List<ProfileBean> getAll(); 
 	
-//	public void delete(Long id);
-	
 	public ProfileBean edit(Long id);
 	
 	public void update(ProfileBean user);
 
 	//should not create with form-> UserCredentialsBean in dao
 	
-	public boolean inActivate(Long id);
+	public boolean inActivate(Long id);   //or	public void delete(Long id);  
+	public void inActivateUser(CredentialsBean user);
 	
 	CredentialsBean findUserById(Long id);
 	

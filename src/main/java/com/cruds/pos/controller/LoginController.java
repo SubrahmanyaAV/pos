@@ -18,19 +18,19 @@ public class LoginController {
 
 	@Autowired
 	TestService testService;
-	
+
 	@Autowired
 	private UserServiceImpl userService;
-	
-/*	@RequestMapping("login.html")
+
+	/*	@RequestMapping("login.html")
 	public String showLoginPage()
 	{
 		//testService.create(new TestEntity("Hello"));
 		// uncomment above line to test Hibernate 
 		return "login";
 	}
-	*/
-	
+	 */
+
 	@RequestMapping(value="/login")
 	public String showLoginPage()
 	{
@@ -39,11 +39,11 @@ public class LoginController {
 
 	@RequestMapping(value="/login" ,method= RequestMethod.POST)
 	public String doLogin(@RequestParam("userID") String userID
-			              ,@RequestParam("password") String password
-			               ,HttpSession session ,RedirectAttributes ra)
+			,@RequestParam("password") String password
+			,HttpSession session ,RedirectAttributes ra)
 	{
 		CredentialsBean user = userService.authenticate(userID, password);
-		
+
 		if(user != null)
 		{
 			user.setPassword("");
@@ -57,4 +57,5 @@ public class LoginController {
 		}
 	}
 	
+
 }

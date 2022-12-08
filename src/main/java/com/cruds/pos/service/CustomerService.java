@@ -1,29 +1,32 @@
 package com.cruds.pos.service;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import com.cruds.pos.bean.CartBean;
 import com.cruds.pos.bean.OrderBean;
 import com.cruds.pos.bean.StoreBean;
 import com.cruds.pos.exception.POSException;
 import com.cruds.pos.form.CartFormBean;
+import com.cruds.pos.form.OrderFormBean;
 
 public interface CustomerService {
 	
-//	boolean addToCart(CartBean cart);
+	public CartBean edit(int cartID); 
 	
 	boolean modifyCart(CartBean cart) throws POSException;
 	
-	String confirmOrder(OrderBean order, ArrayList<CartBean> cart);
+//	OrderBean confirmOrder(OrderBean order, ArrayList<CartBean> cart);
+	OrderBean confirmOrder(OrderFormBean order, ArrayList<CartBean> cart);
 	
-	String cancelOrder(String orderID);
+	OrderBean cancelOrder(String orderID);
 	
-	ArrayList<StoreBean> viewStore(String city);
+	public Set<StoreBean> searchStore(String city);//ArrayList<StoreBean> viewStore(String city);
 	
-	ArrayList<CartBean> viewCart(Long id);
+	ArrayList<CartBean> viewCart();
 	
 	ArrayList <OrderBean> viewOrder();
 	
-	public boolean addToCart(CartFormBean cart);
+	boolean addToCart(CartFormBean cart) throws POSException;//boolean addToCart(CartBean cart);
 
 }

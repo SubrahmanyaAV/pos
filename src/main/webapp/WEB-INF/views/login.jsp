@@ -20,7 +20,7 @@
 		<label>Password</label> <input type="password" name="password"><br />
 		<input type="submit" value="login">
 	</form>
-<h3> New User<a href = "user.html   "> Click Here</a></h3> 
+<h3> New User<a href = "user.html"> Click Here</a></h3> 
 
 <br/>
  <!-- <h3> New User<a href = "credentials.html   "> Click Here</a></h3> --> 

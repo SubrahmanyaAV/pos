@@ -26,5 +26,8 @@ public interface UserService {
 	public boolean create(CustomerFormBean user) throws POSException;
 	
 	public boolean inActivate(Long id);
+	public void inActivateUser(CredentialsBean user);
+	
+	CredentialsBean findUserById(Long id);
 
 }

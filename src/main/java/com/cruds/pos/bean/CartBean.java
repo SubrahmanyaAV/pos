@@ -1,6 +1,5 @@
 package com.cruds.pos.bean;
 
-import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,7 +19,7 @@ import javax.persistence.Table;
 public class CartBean {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="cartID",nullable=false)
 	private int cartID;
 	
@@ -34,7 +33,7 @@ public class CartBean {
 	private double cost;
 	
 	@Column(name="orderDate")
-	private Date orderDate;
+	private String orderDate;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private CredentialsBean customer;
@@ -51,7 +50,7 @@ public class CartBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CartBean( String cartType, int cartQuantity, double cost, Date orderDate) {
+	public CartBean( String cartType, int cartQuantity, double cost, String orderDate) {
 		super();
 		this.cartType = cartType;
 		this.cartQuantity = cartQuantity;
@@ -59,7 +58,7 @@ public class CartBean {
 		this.orderDate = orderDate;
 	}
 
-	public CartBean(String cartType, int cartQuantity, double cost, Date orderDate, CredentialsBean customer,
+	public CartBean(String cartType, int cartQuantity, double cost, String orderDate, CredentialsBean customer,
 			FoodBean food) {
 		super();
 		this.cartType = cartType;
@@ -70,7 +69,7 @@ public class CartBean {
 		this.food = food;
 	}
 
-	public CartBean( String cartType, int cartQuantity, double cost, Date orderDate,
+	public CartBean( String cartType, int cartQuantity, double cost, String orderDate,
 			CredentialsBean credential) {
 		super();
 		
@@ -81,7 +80,7 @@ public class CartBean {
 		this.customer = credential;
 	}
 
-	public CartBean(String cartType, int cartQuantity, double cost, Date orderDate, FoodBean food) {
+	public CartBean(String cartType, int cartQuantity, double cost, String orderDate, FoodBean food) {
 		super();
 		this.cartType = cartType;
 		this.cartQuantity = cartQuantity;
@@ -122,11 +121,11 @@ public class CartBean {
 		this.cost = cost;
 	}
 
-	public Date getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 

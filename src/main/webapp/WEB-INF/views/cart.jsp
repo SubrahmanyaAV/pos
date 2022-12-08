@@ -1,3 +1,4 @@
+<%@page import="com.cruds.pos.form.CartFormBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
@@ -8,6 +9,8 @@
 <title>Cart Page</title>
 </head>
 <body>
+
+	<a href="home.html">Home</a>
 
 	<h3>Cart</h3>
 
@@ -37,6 +40,10 @@
 
 		</tbody>
 	</table>
+	
+	
+	<br/><br/><br/>
+	<a href="order.html"><button>Place Order</button> </a>
 
 
 

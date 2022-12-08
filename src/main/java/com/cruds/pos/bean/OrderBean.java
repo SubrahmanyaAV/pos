@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 public class OrderBean {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="o_id")
 	private Long o_id;
 	
@@ -75,6 +76,24 @@ public class OrderBean {
 		this.oState = oState;
 		this.pincodeO = pincodeO;
 		this.mobileNum = mobileNum;
+	}
+
+	public OrderBean(String orderID, Date orderDateO, double totalPrice, String oStatus, String oStreet, String oCity,
+			String oState, String pincodeO, String mobileNum, CredentialsBean credentials, StoreBean store,
+			CartBean cart) {
+		super();
+		this.orderID = orderID;
+		this.orderDateO = orderDateO;
+		this.totalPrice = totalPrice;
+		this.oStatus = oStatus;
+		this.oStreet = oStreet;
+		this.oCity = oCity;
+		this.oState = oState;
+		this.pincodeO = pincodeO;
+		this.mobileNum = mobileNum;
+		this.credentials = credentials;
+		this.store = store;
+		this.cart = cart;
 	}
 
 	public Long getO_id() {
