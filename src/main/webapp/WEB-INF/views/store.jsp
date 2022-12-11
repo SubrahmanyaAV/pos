@@ -10,14 +10,20 @@
 </head>
 <body>
 
+	<br/><br/>
+	<a href="home.html">Home</a>
+	<br/>
+	<br/>
+
+
 	<h1>Store</h1>
 
 	<form action="store.html" method="post">
 		<label>City</label> 
-		<input type="text" name="city"><br/> 
+		<input type="text" name="city"><br/> <br/>
 		<input type="submit" value="search">
 	</form>
-	<br/>
+	<br/><br/>
 	
 	<h3>Store List</h3>
 
@@ -38,7 +44,7 @@
 
 			<c:forEach items="${STORE}" var="s">
 				<tr>
-					<td><c:out value="${s.s_id}" /></td>
+					<td><c:out value="${s.id}" /></td>
 					<td><c:out value="${s.city}" /></td>
 					<td><c:out value="${s.mobileNo}" /></td>
 					<td><c:out value="${s.name}" /></td>

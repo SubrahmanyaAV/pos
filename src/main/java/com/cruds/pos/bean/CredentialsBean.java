@@ -76,13 +76,12 @@ public class CredentialsBean {
 		this.loginStatus = loginStatus;
 		this.orders = orders;
 	}
-
-	public Long getC_id() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setC_id(Long c_id) {
-		this.id = c_id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getUserID() {
@@ -117,14 +116,6 @@ public class CredentialsBean {
 		this.loginStatus = loginStatus;
 	}
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getIsActive() {
 		return isActive;
 	}

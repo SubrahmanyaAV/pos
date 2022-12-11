@@ -16,15 +16,6 @@ public class CartFormBean {
 	
 	private String foodID; 
 	private String name; 
-	
-	@Override
-	public String toString() {
-		return "CartFormBean [userID=" + userID + ", loginStatus=" + loginStatus + ", cartID=" + cartID
-				+ ", cartQuantity=" + cartQuantity + ", cartType=" + cartType + ", cost=" + cost + ", orderDate="
-				+ orderDate + ", foodID=" + foodID + ", name=" + name + ", foodtype=" + foodtype + ", foodSize="
-				+ foodSize + ", foodQuantity=" + foodQuantity + ", price=" + price + "]";
-	}
-
 	private String foodtype; 
 	private String foodSize; 
 	private int foodQuantity;
@@ -145,6 +136,14 @@ public class CartFormBean {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "CartFormBean [userID=" + userID + ", password=" + password + ", loginStatus=" + loginStatus
+				+ ", cartID=" + cartID + ", cartQuantity=" + cartQuantity + ", cartType=" + cartType + ", cost=" + cost
+				+ ", orderDate=" + orderDate + ", foodID=" + foodID + ", name=" + name + ", foodtype=" + foodtype
+				+ ", foodSize=" + foodSize + ", foodQuantity=" + foodQuantity + ", price=" + price + "]";
 	}
 
 }

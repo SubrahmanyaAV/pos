@@ -66,72 +66,106 @@
 	<br />
 	<br />
 
-	<a href="adminstore.html">Store</a>
+	<a href="adminstore.html">Add Store</a>
 	<br />
 	<br />
 
 	<a href="user.html">User</a>
 	<br />
 	<br />
+	
+	<a href="search.html">Search User</a>
+	<br />
+	<br />
+	
 	<%
  		}
  	%>
-	<a href="userlist.html">Edit Profile</a>
+	<a href="user.html">Edit Profile</a>
 	<br />
 	<br />
 
-
+	<a href="store.html">Store</a>
 	<br />
-
+	<br />
+	
+	<h3>Food</h3>	
+	<br/>
+	<br/>
+	
+	
 	<form action="cart.html" method="post">
-		<label>Quantity </label> <input type="number" id="quantity"
-			name="quantity" min="1" max="5" /> <br /> <label>type</label> <select
-			name="type" id="type">
+		<label>Quantity </label> 
+		<input type="number" id="cartQuantity" name="cartQuantity" min="1" max="5" />
+		<br /> 
+		<br /> 
+		
+		<label>type</label> <select name="cartType" id="cartType">
 			<option>Veg</option>
 			<option>Non Veg</option>
-		</select> <br /> <label>cost</label> <input type="text" name="cost" /> <br />
-		<label>orderDate</label> <input type="date" name="orderDate" /> <br />
+		</select> 
+		<br />
+		<br />
+		  
+		<label>cost</label> 
+		<input type="text" name="cost" /> 
+		<br />
+		<br />
+		<label>orderDate</label> 
+		<input type="date" name="orderDate" /> 
+		<br />
+		<br />
 
-
-		<!-- 	<label>Customer ID</label>
+		<label>Customer ID</label>
 		<input type="text" name="id" />
 		<br />
+		<br />
+		
 		<label>foodID</label>
 		<input type="text" name="f_id" />
 		<br />
-  -->
-		<br /> <input type="submit" value="add to cart" />
-
+ 		<br />
+		<input type="submit" value="add to cart" />
+		<br /><br />
 	</form>
 
 
 
 
-	<%-- 	<table cellpadding="2" cellspacing="2" border="1">
-		<tr>
-			<th>cartID</th>
-			<th>quantity</th>
-			<th>type</th>
-			<th>cost</th>
-			<th>customer_id</th>
-			<th>f_id</th>
-			<th>Add</th>
-		</tr>
-		
-		<c:forEach var="cart" items="${CART}">
+	<table cellpadding="2" cellspacing="2" border="1">
+		<thead>
 			<tr>
-				<td>${cart.cartID }</td>
-				<td>${cart.quantity }</td>
-				<td>${cart.type }</td>
-				<td>${cart.cost }</td>
-				<td>${cart.orderDate }</td>
-				<td>${cart.customer_id }</td>
-				<td>${cart.f_id}</td>
-				<td align="center"><a href="/cart.html">Add To Cart</a></td>
+				<td>id</td>
+				<td>Food Id</td>
+				<td>Food Name</td>
+				<td>Food Type</td>
+				<td>Food Size</td>
+				<td>Quantity</td>
+				<td>Price</td>
+				<td>Add</td>
 			</tr>
-		</c:forEach>
+		</thead>
+
+		<tbody>
+
+			<c:forEach items="${FOOD}" var="f">
+
+				<tr>
+					<td><c:out value="${f.f_id}"></c:out></td>
+					<td><c:out value="${f.foodID}"></c:out></td>
+					<td><c:out value="${f.foodQuantity}"></c:out></td>
+					<td><c:out value="${f.foodSize}"></c:out></td>
+					<td><c:out value="${f.foodtype}"></c:out></td>
+					<td><c:out value="${f.name}"></c:out></td>
+					<td><c:out value="${f.price}"></c:out></td>
+					<td><a href="<c:url value='/food-add'/>"><button>Add To Cart</button></a></td>
+				</tr>
+
+			</c:forEach>
+
+		</tbody>
 	</table>
- --%>
+
 
 
 </body>

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cruds.pos.bean.FoodBean;
-import com.cruds.pos.bean.ProfileBean;
 import com.cruds.pos.exception.POSException;
 
 @Repository
@@ -33,6 +32,7 @@ public class FoodDAOImpl implements FoodDAO {
 		Session session = sf.openSession();
 		String hql = "from FoodBean f where f.foodID = ? ";
 
+		@SuppressWarnings("unchecked")
 		List<FoodBean> list = session.createQuery(hql).setString(0, foodID).list();
 
 		session.close();
@@ -59,12 +59,10 @@ public class FoodDAOImpl implements FoodDAO {
 	}
 
 	@Override
-	public boolean removeFood(String storeID, String foodID) {
+	public boolean removeFood(String foodID) {
 
 		Session session = sf.openSession();
 		session.beginTransaction();
-
-		String hql = "delete from FoodBean f where f.foodID = ?";
 
 		FoodBean fb = (FoodBean) session.load(FoodBean.class, foodID);
 		session.delete(fb);	

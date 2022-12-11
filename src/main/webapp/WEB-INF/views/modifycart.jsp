@@ -15,40 +15,34 @@
 
 <h1>Food List</h1>
 
-<form:form action="modifyFood.html" method="post">
+<form:form action="modifycart.html" method="post">
 
-		<label>id</label>
-		<form:input path="f_id" readonly="true" />
+		<label>Cart Id</label>
+		<form:input path="cartID" readonly="true" />
 		<br />
 		<br />
 
-		<label>FoodId</label>
-		<form:input path="foodID" />
+		<label>Type</label>
+		<form:input path="cartType" />
 		<br />
 		<br />
 
 		<label>Food Name</label>
-		<form:input path="name" />
+		<form:input path="name" readonly="true"/>
 		<br />
 		<br />
 
 		<label>FoodType</label>
-		<form:input path="foodtype" />
+		<form:input path="cost" />
 		<br />
 		<br />
 
-		<label>Food Size</label>
-		<form:input path="foodSize" />
+		<form:input path="orderDate" hidden="true" readonly="true"/>
 		<br />
 		<br />
 
 		<label>Quantity</label>
-		<form:input path="foodQuantity" />
-		<br />
-		<br />
-
-		<label>Price</label>
-		<form:input path="price" />
+		<form:input path="cartQuantity" />
 		<br />
 		<br />
 

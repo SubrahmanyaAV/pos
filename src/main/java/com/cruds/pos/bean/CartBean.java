@@ -50,6 +50,12 @@ public class CartBean {
 		// TODO Auto-generated constructor stub
 	}
 
+	public CartBean( FoodBean food,int cartQuantity) {
+		super();
+		this.cartQuantity = cartQuantity;
+		this.food = food;
+	}
+
 	public CartBean( String cartType, int cartQuantity, double cost, String orderDate) {
 		super();
 		this.cartType = cartType;

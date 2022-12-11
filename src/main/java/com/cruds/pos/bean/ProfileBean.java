@@ -1,7 +1,6 @@
 package com.cruds.pos.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +15,11 @@ import javax.persistence.Table;
 @Table(name="user_profile")
 public class ProfileBean implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

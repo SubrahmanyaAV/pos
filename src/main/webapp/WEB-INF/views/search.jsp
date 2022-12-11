@@ -1,93 +1,120 @@
-<%@page import="java.util.Set"%>
 <%@page import="com.cruds.pos.bean.CredentialsBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Search Page</title>
+<title>User List</title>
 </head>
 <body>
 
-	<%
-		Set<CredentialsBean> cb = (Set<CredentialsBean>) session.getAttribute("CREDENTIALS");
+<%-- 	<%
+		CredentialsBean cb = (CredentialsBean) session.getAttribute("CREDENTIAL");
+	
 	%>
 
-	<h3>Search User</h3>
-	
-	<a href="home.html">Home</a>
-	<br/><br/>
-
-	<form action="searchuser.html" method="post">
+	<%
+		if(cb.getC_id().equals(""))
+		{
+	%>
+ --%>
+ 	<form action="search.html" method="post">
 		<label>ID</label> 
 		<input type="text" name="id"><br /> 
 		<input type="submit" value="search">
 	</form>
-	
-	
-	<h3>User Details</h3>
-  	
-	<form:form action="inActivate.html" method="post">
-		<label>ID</label>
-		<form:input path="id" />
-		<br />
+ 	
+<%--  	
+ 	
+	<h3>User Profile</h3>
 
-		<label>isActive</label>
-		<form:input path="isActive"  />
-		<br />
-		<label>loginStatus</label>
-		<form:input path="loginStatus" readonly="true" />
-		<br />
-		<label>User ID</label>
-		<form:input path="userID" readonly="true" />
-		<br />
-		<label>password</label>
-		<form:input path="password" hidden="true" readonly="true" />
-		<br />
-		
-		<label>userType</label>
-		<form:input path="userType" readonly="true" />
-		<br />
-		<input type="submit" value="InActivate" />
-	
-	</form:form>
-	
-	
-<%--<h1>Profile</h1>
-
-	
 	<table border="1">
 		<thead>
 			<tr>
-			    <td>id</td>
-			    <td>isActive</td>
-				<td>loginStatus</td>
+				<td>id</td>
+				<td>FirstName</td>
+				<td>LastName</td>
+				<td>DateOfBirth</td>
+				<td>Gender</td>
+				<td>Street</td>
+				<td>Location</td>
+				<td>City</td>
+				<td>State</td>
+				<td>Pincode</td>
+				<td>MobileNo</td>
+				<td>emailID</td>
+			</tr>
+		</thead>
+		<tbody>
+
+			<c:forEach items="${PROFILE}" var="u">
+
+				<tr>
+					<td><c:out value="${u.id}"></c:out></td>
+					<td><c:out value="${u.firstName}"></c:out></td>
+					<td><c:out value="${u.lastName}"></c:out></td>
+					<td><c:out value="${u.dateOfBirth}"></c:out></td>
+					<td><c:out value="${u.gender}"></c:out></td>
+					<td><c:out value="${u.street}"></c:out></td>
+					<td><c:out value="${u.location}"></c:out></td>
+					<td><c:out value="${u.city}"></c:out></td>
+					<td><c:out value="${u.state}"></c:out></td>
+					<td><c:out value="${u.pincode}"></c:out></td>
+					<td><c:out value="${u.mobileNo}"></c:out></td>
+					<td><c:out value="${u.emailID}"></c:out></td>
+					<td><a href="<c:url value='/user-edit-${u.id}'/>">edit</a></td>
+				</tr>
+
+			</c:forEach>
+
+		</tbody>
+	</table>
+	<br />
+
+ --%>	<h3>User Credentials</h3>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<td>id</td>
+				<td>isActive</td>
 				<td>userID</td>
-				<td>userType</td>
+				<td>loginStatus</td>
 				<!-- <td>profile id</td> -->
 			</tr>
 		</thead>
 		<tbody>
-		<%
-			for(CredentialsBean c : cb){
-		%>
-			<tr>
-				<td><%=c.getC_id()%></td>
-				<td><%=c.getIsActive()%></td>
-				<td><%=c.getLoginStatus() %></td>
-				<td><%=c.getUserID()%></td>
-				<td><%=c.getUserType()%></td>
-			</tr>
-		<%
-			}
-		%>		
-	
-	</tbody>				
+
+			<c:forEach items="${User}" var="u">
+
+				<tr>
+					<td><c:out value="${u.id}"></c:out></td>
+					<td><c:out value="${u.isActive}"></c:out></td>
+					<td><c:out value="${u.userID}"></c:out></td>
+					<td><c:out value="${u.loginStatus}"></c:out></td>
+					<td><a href="<c:url value='/userinactive-${u.id}'/>">InActivate</a></td>
+					<%-- <td><c:out value="${u.profile_id}"></c:out></td> --%>
+					<%-- <td><a href="<c:url value='/user-del-${u.id}'/>">Delete</a></td> --%>
+				</tr>
+
+			</c:forEach>
+
+		</tbody>
 	</table>
 	
+	<br/><br/>
+	<a href="home.html">Home</a>
+	
+
+
+
+
+<%-- 	<%
+		}
+	%>
  --%>
 
 </body>

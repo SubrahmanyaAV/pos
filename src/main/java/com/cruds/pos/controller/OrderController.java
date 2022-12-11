@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cruds.pos.bean.CartBean;
-import com.cruds.pos.form.CartOrderFormBean;
 import com.cruds.pos.form.OrderFormBean;
 import com.cruds.pos.service.CustomerServiceImpl;
 
@@ -25,7 +24,7 @@ public class OrderController {
 	@RequestMapping(value = "order.html", method= RequestMethod.GET)
 	public String ShowOrder(Model model)
 	{
-		model.addAttribute("command", new CartOrderFormBean());
+		model.addAttribute("command", new OrderFormBean());
 		model.addAttribute("ORDERS", customerService.viewOrder());
 		return "order";	
 	}

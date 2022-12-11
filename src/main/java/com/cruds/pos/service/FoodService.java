@@ -14,7 +14,7 @@ public interface FoodService {
 	
 	public boolean modifyFood(FoodBean foodbean) throws POSException;
 
-	public boolean removeFood(String storeId, String foodID);
+	public boolean removeFood(String foodID);
 	
 	public FoodBean viewFood(String foodID);
 	

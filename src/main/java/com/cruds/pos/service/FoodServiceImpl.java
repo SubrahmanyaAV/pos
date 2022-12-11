@@ -31,8 +31,8 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Override
-	public boolean removeFood(String storeID, String foodID) {
-		return dao.removeFood(storeID, foodID);
+	public boolean removeFood(String foodID) {
+		return dao.removeFood(foodID);
 	}
 
 	@Override

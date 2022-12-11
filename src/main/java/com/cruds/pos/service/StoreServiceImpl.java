@@ -1,15 +1,12 @@
 package com.cruds.pos.service;
 
-import java.lang.Long;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cruds.pos.bean.StoreBean;
 import com.cruds.pos.dao.StoreDAO;
-import com.cruds.pos.dao.StoreDAOImpl;
 import com.cruds.pos.exception.POSException;
 
 @Service

@@ -20,7 +20,7 @@ public class CartUtil {
 		CartBean cb = new CartBean(/*foodFormBean.getCartID(),*/ cartFormBean.getCartType()
 								   , cartFormBean.getCartQuantity(), cartFormBean.getCost()
 								   , cartFormBean.getOrderDate(), credb, fb);
-
+		
 		return cb;
 		
 	}

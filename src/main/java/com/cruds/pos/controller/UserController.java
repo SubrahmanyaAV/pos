@@ -24,6 +24,12 @@ public class UserController {
 	@Autowired
 	private UserServiceImpl userService;
 	
+	@RequestMapping(value="/home.html")
+	public String showhomePage()
+	{
+		return "home";
+	}
+	
 	@RequestMapping(value = "user.html", method= RequestMethod.GET)
 	public String ShowProfileForm(Model model)
 	{
@@ -117,9 +123,22 @@ public class UserController {
 	public String editCred(@PathVariable("id") Long id,Model model)
 	{
 		model.addAttribute("command",userService.findUserById(id));
-		return "search";
+		return "inactivate";
 	}
   	
+	@RequestMapping(value = {"/search.html"}, method = RequestMethod.GET)
+	public String showUserListPage(ModelMap model) {
+		model.addAttribute("Credentials", new CredentialsBean());
+		return "search";
+	}
+
+	@RequestMapping(value = {"/search.html"}, method = RequestMethod.POST)
+	public String searchUser(@ModelAttribute CredentialsBean cb, Model model) {
+		Set<CredentialsBean> user = userService.searchUser(cb.getId(), cb.getUserID());
+		model.addAttribute("User", user);
+		return "search";
+	}
+
 	@RequestMapping(value="inActivate.html" , method=RequestMethod.POST)
 	public String inActivatUser(@ModelAttribute("CredentialsBean") CredentialsBean user )
 	{

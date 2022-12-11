@@ -134,11 +134,11 @@
 					<td><c:out value="${u.id}"></c:out></td>
 					<td><c:out value="${u.isActive}"></c:out></td>
 					<td><c:out value="${u.userID}"></c:out></td>
-					<td><c:out value="${u.loginStatus}"></c:out></td>
 					<td><c:out value="${u.password}"></c:out></td>
+					<td><c:out value="${u.loginStatus}"></c:out></td>
+					
 					<%-- <td><c:out value="${u.profile_id}"></c:out></td> --%>
 					<%-- <td><a href="<c:url value='/user-del-${u.id}'/>">Delete</a></td> --%>
-					<td><a href="<c:url value='/userinactive-${u.id}'/>">InActivate</a></td>
 				</tr>
 
 			</c:forEach>
@@ -146,8 +146,6 @@
 		</tbody>
 	</table>
 	
-	<br/><br/>
-	<a href="searchuser.html">inactivate user</a>
 	
 	
  

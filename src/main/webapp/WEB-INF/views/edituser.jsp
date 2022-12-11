@@ -24,7 +24,7 @@
 		<br /><br />
 		
   		<label>DOB</label>
-		<form:input type="date" path="dateOfBirth" />
+		<form:input type="date" path="dateOfBirth" readonly="true" />
 		<br />
 		<label>Gender</label>
 		<select name="gender" id="gender" readonly ="true">

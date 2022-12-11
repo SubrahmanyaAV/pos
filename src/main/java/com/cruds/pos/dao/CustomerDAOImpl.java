@@ -3,7 +3,6 @@ package com.cruds.pos.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +25,32 @@ public class CustomerDAOImpl implements CustomerDAO{
 		Session session = sf.openSession();		
 		session.beginTransaction();
 		
-		String hql = "INSERT INTO CartBean(cartQuantity,cartType,cost,orderDate,id,food)"   
-					+ "SELECT cartQuantity,cartType,cost,orderDate,id,food FROM CartBean";
+/*		String hql = "INSERT INTO CartBean(cartQuantity,cartType,cost,orderDate)"   
+					+ "SELECT cartQuantity,cartType,cost,orderDate FROM CartBean"
+					+ "UPDATE CartBean set cartQuantity= cartQuantity-? ,cartType= :cartType ,cost = :cost
+					, orderDate = :OrderDate"+ "where cartID = :cartID";
+		
+		int quantity = 1;	
+						
 		Query query = session.createQuery(hql);
+		query.setParameter("cartID", cart.getCartID());
+		query.setParameter("type",cart.getCartType());
+		query.setParameter("quantity",quantity);
+		query.setParameter("cost",cart.getCost());
+		query.setParameter("orderDate",cart.getOrderDate());
+//		query.setParameter("customer_id",cart.getCredential().getId());
+//		query.setParameter("f_id",cart.getFood().getF_id());
+		
 		int row = query.executeUpdate();
 
 		session.close();
-		return true;		
-		
-/*		session.save(cart);
+		return row > 0;		
+*/		
+		session.save(cart);
 		session.getTransaction().commit();
 		session.close();
 		return true ;
-*/	}
+	}
 	
 	@Override
 	public CartBean edit(int cartID) {
@@ -63,27 +75,11 @@ public class CustomerDAOImpl implements CustomerDAO{
 	public boolean modifyCart(CartBean cart) throws POSException{
 		Session session = sf.openSession();
 		session.beginTransaction();
-		
-/*		int row = 0;
-		String hql = "UPDATE CartBean set type = :type ,quantity = :quantity ,cost = :cost , orderDate = :OrderDate"
-						+ "where cartID = :cartID";
-		Query query = session.createQuery(hql);
-		query.setParameter("cartID", cart.getCartID());
-		query.setParameter("type",cart.getCartType());
-		query.setParameter("quantity",cart.getCartQuantity());
-		query.setParameter("cost",cart.getCost());
-		query.setParameter("orderDate",cart.getOrderDate());
-		query.setParameter("customer_id",cart.getCredential().getId());
-		query.setParameter("food_id",cart.getFood().getF_id());
-		row = query.executeUpdate();
-*/		
 		session.update(cart);
 		System.out.println(cart);
 		session.getTransaction().commit();
 		session.close();
 		return true;
-//		return row > 0;
-		
 	}
 
 	@Override

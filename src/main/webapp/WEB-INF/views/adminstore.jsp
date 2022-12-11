@@ -14,7 +14,6 @@
 	<a href="home.html">Home</a>
 	<br/>
 
-
 	<h1>Store Page</h1>
 
 	<form:form action="adminstore.html" method="post">
@@ -91,7 +90,7 @@
 					<td><c:out value="${s.pincode}"></c:out></td>
 					<td><a href="<c:url value='/store-del-${s.storeID}'/>"><button>Remove</button></a></td>
 					<td><a href="<c:url value='/store-edit-${s.storeID}'/>"><button>Modify</button></a></td>
-					<td><a href="<c:url value='/store-view-${s.storeID}'/>"><button>View</button></a></td>
+					<%-- <td><a href="<c:url value='/store-view-${s.storeID}'/>"><button>View</button></a></td> --%>
 
 				</tr>
 
