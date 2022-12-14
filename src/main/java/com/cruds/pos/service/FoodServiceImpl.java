@@ -21,8 +21,8 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Override
-	public FoodBean edit(String foodID) {
-		return dao.edit(foodID);
+	public FoodBean getByID(String foodID) {
+		return dao.getByID(foodID);
 	}
 
 	@Override
@@ -31,14 +31,14 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Override
-	public boolean removeFood(String foodID) {
-		return dao.removeFood(foodID);
+	public boolean removeFood(Long f_id) {
+		return dao.removeFood(f_id);
 	}
 
 	@Override
-	public FoodBean viewFood(String foodID) {
+	public FoodBean viewFood(Long f_id) {
 		// TODO Auto-generated method stub
-		return dao.viewFood(foodID);
+		return dao.viewFood(f_id);
 	}
 
 	@Override

@@ -38,6 +38,7 @@
 				<td>state</td>
 				<td>storeID</td>
 				<td>street</td>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -52,6 +53,7 @@
 					<td><c:out value="${s.state}" /></td>
 					<td><c:out value="${s.storeID}" /></td>
 					<td><c:out value="${s.street}" /></td>
+					<%-- <td><a href="<c:url value='/select-store'/>">select</a></td> --%>
 				</tr>
 			</c:forEach>
 

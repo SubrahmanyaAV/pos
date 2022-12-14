@@ -1,11 +1,8 @@
 package com.cruds.pos.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,30 +23,30 @@ public class FoodController {
 
 		//foodBeanService.addfood(new foodBean( 2, "Hassan", "9481684710", "shanthinath", "573201", "Karnataka", "BH Road"));
 		model.addAttribute("command", new FoodBean());
-//		model.addAttribute("FOOD", foodService.getAll());
+		model.addAttribute("FOOD", foodService.getAll());
 		model.addAttribute("FOODLIST", foodService.viewAllFood(storeId));
 		return "food";		
 	}
 
 	@RequestMapping(value="food.html", method=RequestMethod.POST)
-	public String doFood(@ModelAttribute("FoodBean") FoodBean f)
+	public String doFood(@ModelAttribute("FoodBean") FoodBean fb)
 	{
-		foodService.addFood(f);
+		foodService.addFood(fb);
 		//System.out.println(s);
 		return "redirect:food.html";
 	}
-
-	/*@RequestMapping(value = "/food-del-{foodID}", method= RequestMethod.GET)
-	public String DeleteFood(@PathVariable("foodID") String foodID)
+	
+	@RequestMapping(value = "/food-del-{foodID}", method= RequestMethod.GET)
+	public String DeleteFood(@PathVariable("foodID")Long f_id)
 	{
-		foodBeanService.removeFood(foodID);
+		foodService.removeFood(f_id);
 		return "redirect:food.html";
-	}*/
+	}
 
 	@RequestMapping(value = "/food-edit-{foodID}", method= RequestMethod.GET)
 	public String EditFood(@PathVariable("foodID") String foodID, Model model)
 	{
-		model.addAttribute("command", foodService.edit(foodID));
+		model.addAttribute("command", foodService.getByID(foodID));
 		return "modifyfood";
 	}
 
@@ -60,7 +57,7 @@ public class FoodController {
 		return "redirect:food.html";
 	}
 
-	@RequestMapping(value = {"/food-add"}, method = RequestMethod.GET)
+/*	@RequestMapping(value = {"/food-add"}, method = RequestMethod.GET)
 	public String showFoodPage(ModelMap model) {
 		model.addAttribute("food", new FoodBean());
 		return "home";
@@ -72,6 +69,6 @@ public class FoodController {
 		model.addAttribute("FOOD", food);
 		return "home";
 	}
-
+*/
 
 }

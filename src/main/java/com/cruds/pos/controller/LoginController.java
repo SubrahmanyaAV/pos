@@ -30,7 +30,12 @@ public class LoginController {
 		return "login";
 	}
 	 */
-
+	@RequestMapping(value="/front")
+	public String frontPage()
+	{
+		return "front";
+	}
+	
 	@RequestMapping(value="/login")
 	public String showLoginPage()
 	{

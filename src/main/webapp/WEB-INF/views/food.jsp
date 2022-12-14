@@ -17,7 +17,7 @@
 
 <h1>Food Page</h1>
 
-<a href="home.html">Home</a>
+<a href="home.html">Home</a><br /> <br /> 
 
 <form:form action="food.html" method="post">
 
@@ -61,12 +61,12 @@
 
 		<thead>
 			<tr>
-			<td>id </td>
+				<td>id </td>
 				<td>Food id </td>
-				<td>Food Name</td>
+				<td>Quantity</td>
 				<td>Food Type</td>
 				<td>Food Size</td>
-				<td>Quantity</td>
+				<td>Food Name</td>
 				<td>Price</td>
 			</tr>
 		</thead>
@@ -84,7 +84,7 @@
 					<td><c:out value="${f.name}"></c:out></td>
 					<td><c:out value="${f.price}"></c:out></td>
 					
-					<td><a href="<c:url value='/food-del-${f.foodID}'/>"><button>Remove</button></a></td>
+					<td><a href="<c:url value='/food-del-${f.f_id}'/>"><button>Remove</button></a></td>
 					<td><a href="<c:url value='/food-edit-${f.foodID}'/>"><button>Modify</button></a></td>					
 				</tr>
 				

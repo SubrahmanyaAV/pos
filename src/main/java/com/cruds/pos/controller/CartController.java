@@ -35,15 +35,26 @@ public class CartController {
 	{
 		model.addAttribute("command", new CartFormBean());
 		model.addAttribute("CART", customerService.viewCart());
-		model.addAttribute("FOOD", foodService.getAll());
-		model.addAttribute("CREDENTIALS", userService.getAllCredentials());
+//		model.addAttribute("FOOD", foodService.getAll());
+//		model.addAttribute("CREDENTIALS", userService.getAllCredentials());
 		return "cart";	
 	}
 
 	@RequestMapping(value="cart.html", method=RequestMethod.POST)
-	public String addToCart(@ModelAttribute("CartFormBean") CartFormBean cartFormBean) throws POSException
+	public String addToCart(@ModelAttribute("CartFormBean") CartFormBean cartFormBean
+							,String foodID,Long id) throws POSException
 	{
-		customerService.addToCart(cartFormBean);
+		CartBean cart = new CartBean();
+		cart.setCartQuantity(1);
+		cart.setCartType(cart.getFood().getFoodtype());
+    	cart.setCost(cart.getCost()*cart.getCartQuantity());
+    	cart.setOrderDate(cart.getOrderDate());
+    	cart.setCredential(userService.findUserById(id));
+    	cart.setFood(foodService.getByID(foodID));
+ //   	model.addAttribute("ID",id);
+ //   	model.addAttribute("FOODID", foodID);
+
+		customerService.addToCartFood(cartFormBean);
 		System.out.println(cartFormBean);
 		return "cart";
 	}
@@ -63,5 +74,65 @@ public class CartController {
 		return "redirect:cart.html";
 	}
 
+/*	@RequestMapping(value = "/{id}/cart", method = RequestMethod.GET)
+	public String Cart(@PathVariable("id") Long id ,ModelMap model){
+		
+		model.addAttribute("FOOD", foodService.getAll());
+		CredentialsBean user = userService.findUserById(id);
+		model.addAttribute("name", user.getId());
+		model.addAttribute("products",customerService.list(userService.findUserById(id).getId()));
+		return "cart";
+		
+	}
 	
+	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
+	public String addToCartFood(@RequestParam("foodID") String foodID
+							   ,@RequestParam("id")Long id
+							   ,ModelMap model) throws POSException
+	{
+		CredentialsBean user = new CredentialsBean();
+		
+		FoodBean fb = foodService.getByID(foodID);
+		
+		List<CartBean> list = customerService.list(userService.findUserById(id).getId());
+    	System.out.println(list.size());
+    	for(int i=0; i<list.size(); i++)
+    	{
+    		if(list.get(i).getFood().getFoodID().equals(foodID))
+    		{
+    			int j=1; //variable created to increase the quantity of product in cart by 1
+    			
+    			CartBean cart = customerService.edit(list.get(i).getCartID());
+    			if(cart.getCartQuantity() == fb.getFoodQuantity())
+    			{
+    				j=0;
+    			}
+    			cart.setCartQuantity(cart.getCartQuantity()+j);
+    	    	cart.setCartType(fb.getFoodtype());
+    	    	cart.setCost(cart.getCost()*cart.getCartQuantity());
+    	    	cart.setOrderDate(cart.getOrderDate());
+    	    	cart.setCredential(userService.findUserById(id));
+    	    	cart.setFood(foodService.getByID(foodID));
+    	    	model.addAttribute("ID",id);
+    	    	model.addAttribute("FOODID", foodID);
+    			customerService.Update(cart);
+    			
+    			return "redirect:/cart";
+    		}
+    	}
+		
+		CartBean cart = new CartBean();
+		cart.setCartQuantity(1);
+		cart.setCartType(fb.getFoodtype());
+    	cart.setCost(cart.getCost()*cart.getCartQuantity());
+    	cart.setOrderDate(cart.getOrderDate());
+    	cart.setCredential(userService.findUserById(id));
+    	cart.setFood(foodService.getByID(foodID));
+    	model.addAttribute("ID",id);
+    	model.addAttribute("FOODID", foodID);
+		customerService.addToCart(cart);
+		return "redirect:/user/{username}/cart";
+		
+	}	
+*/	
 }

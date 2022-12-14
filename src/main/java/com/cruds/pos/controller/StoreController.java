@@ -46,8 +46,6 @@ public class StoreController {
 		model.addAttribute("STORE", store);
 		return "store";
 	}
-	
-//	admin check ==>
 
 	@RequestMapping(value="adminstore.html", method= RequestMethod.GET)
 	public String showStorePage(Model model){
@@ -67,18 +65,18 @@ public class StoreController {
 	}
 	
 		
-	/*@RequestMapping(value = "/store-del-{id}", method= RequestMethod.GET)
+	@RequestMapping(value = "/store-del-{id}", method= RequestMethod.GET)
 	public String DeleteStore(@PathVariable("id") Long id)
 	{
-		storeBeanService.removeStore(id);
-		return "redirect:store.html";
-	}*/
+		storeService.removeStore(id);
+		return "redirect:adminstore.html";
+	}
 	
 	@RequestMapping(value = "/store-edit-{storeID}", method= RequestMethod.GET)
 	public String EditStore(@PathVariable("storeID") String storeID, Model model)
 	{
 		model.addAttribute("command", storeService.edit(storeID));
-				return "modifystore";
+		return "modifystore";
 	}
 	
 	@RequestMapping(value="modifyStore.html", method=RequestMethod.POST)
@@ -102,5 +100,5 @@ public class StoreController {
 		storeService.viewStore(storeBean);
 		return "adminstore";
 	}
-
+	
 }

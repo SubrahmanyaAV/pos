@@ -1,5 +1,7 @@
 package com.cruds.pos.form;
 
+import java.time.LocalDate;
+
 public class CartFormBean {
 	
 	private String userID;
@@ -12,7 +14,7 @@ public class CartFormBean {
 	private int cartQuantity;
 	private String cartType;
 	private double cost;
-	private String orderDate;
+	private LocalDate orderDate;
 	
 	private String foodID; 
 	private String name; 
@@ -82,11 +84,11 @@ public class CartFormBean {
 		this.cost = cost;
 	}
 
-	public String getOrderDate() {
+	public LocalDate getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(String orderDate) {
+	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate = orderDate;
 	}
 

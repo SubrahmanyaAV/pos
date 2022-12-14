@@ -13,7 +13,7 @@ public interface StoreDAO {
 	
 	public boolean modifyStore(StoreBean storeBean) throws POSException;
 	
-	//public int removeStore(Long id);
+	public boolean removeStore(Long id);
 	
 	public StoreBean searchStore(String storeID);
 	

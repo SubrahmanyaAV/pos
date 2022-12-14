@@ -26,23 +26,29 @@
 	<form:form action="inActivate.html" method="post">
 		<label>ID</label>
 		<form:input path="id" />
-		<br />
-
+		<br /><br />
 		<label>isActive</label>
+		<select name="isActive" id="isActive">
+			<option>Y</option>
+			<option>N</option>
+		</select>
+		<br /><br />
+
+<%-- 		<label>isActive</label>
 		<form:input path="isActive"  />
 		<br />
-		<label>loginStatus</label>
-		<form:input path="loginStatus" readonly="true" />
+ --%>		<!-- <label>loginStatus</label> -->
+		<form:input path="loginStatus" hidden="true" readonly="true" />
 		<br />
 		<label>User ID</label>
 		<form:input path="userID" readonly="true" />
 		<br />
-		<label>password</label>
+		<!-- <label>password</label> -->
 		<form:input path="password" hidden="true" readonly="true" />
 		<br />
 		
-		<label>userType</label>
-		<form:input path="userType" readonly="true" />
+		<!-- <label>userType</label> -->
+		<form:input path="userType" hidden="true" readonly="true" />
 		<br />
 		<input type="submit" value="InActivate" />
 	

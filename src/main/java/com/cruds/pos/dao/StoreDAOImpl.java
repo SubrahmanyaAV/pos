@@ -119,4 +119,15 @@ public class StoreDAOImpl implements StoreDAO {
 			return null;
 		}
 
+		@Override
+		public boolean removeStore(Long id) {
+			Session session = sf.openSession();
+			session.beginTransaction();
+			StoreBean sb = (StoreBean) session.load(StoreBean.class, id);
+			session.delete(sb);	
+			session.getTransaction().commit();
+			session.close();
+			return true;
+		}
+
 }

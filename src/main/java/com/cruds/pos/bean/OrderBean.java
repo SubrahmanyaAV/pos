@@ -1,6 +1,6 @@
 package com.cruds.pos.bean;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +24,7 @@ public class OrderBean {
 	private String orderID;			
 	                 
 	@Column(name="orderDate",nullable = false)
-	private Date orderDateO;
+	private LocalDate orderDateO;
 	
 	@Column(name="totalPrice",nullable = false)
 	private double totalPrice;
@@ -64,7 +64,7 @@ public class OrderBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderBean(String orderID, Date orderDateO, double totalPrice, String oStatus, String oStreet, String oCity,
+	public OrderBean(String orderID, LocalDate orderDateO, double totalPrice, String oStatus, String oStreet, String oCity,
 			String oState, String pincodeO, String mobileNum) {
 		super();
 		this.orderID = orderID;
@@ -78,7 +78,7 @@ public class OrderBean {
 		this.mobileNum = mobileNum;
 	}
 
-	public OrderBean(String orderID, Date orderDateO, double totalPrice, String oStatus, String oStreet, String oCity,
+	public OrderBean(String orderID, LocalDate orderDateO, double totalPrice, String oStatus, String oStreet, String oCity,
 			String oState, String pincodeO, String mobileNum, CredentialsBean credentials, StoreBean store,
 			CartBean cart) {
 		super();
@@ -112,11 +112,11 @@ public class OrderBean {
 		this.orderID = orderID;
 	}
 
-	public Date getOrderDateO() {
+	public LocalDate getOrderDateO() {
 		return orderDateO;
 	}
 
-	public void setOrderDateO(Date orderDateO) {
+	public void setOrderDateO(LocalDate orderDateO) {
 		this.orderDateO = orderDateO;
 	}
 

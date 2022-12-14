@@ -1,5 +1,6 @@
 package com.cruds.pos.bean;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -33,7 +34,7 @@ public class CartBean {
 	private double cost;
 	
 	@Column(name="orderDate")
-	private String orderDate;
+	private LocalDate orderDate;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private CredentialsBean customer;
@@ -56,7 +57,7 @@ public class CartBean {
 		this.food = food;
 	}
 
-	public CartBean( String cartType, int cartQuantity, double cost, String orderDate) {
+	public CartBean(String cartType, int cartQuantity, double cost, LocalDate orderDate) {
 		super();
 		this.cartType = cartType;
 		this.cartQuantity = cartQuantity;
@@ -64,7 +65,16 @@ public class CartBean {
 		this.orderDate = orderDate;
 	}
 
-	public CartBean(String cartType, int cartQuantity, double cost, String orderDate, CredentialsBean customer,
+	public CartBean(String cartType, int cartQuantity, double cost, LocalDate orderDate, CredentialsBean customer) {
+		super();
+		this.cartType = cartType;
+		this.cartQuantity = cartQuantity;
+		this.cost = cost;
+		this.orderDate = orderDate;
+		this.customer = customer;
+	}
+
+	public CartBean(String cartType, int cartQuantity, double cost, LocalDate orderDate, CredentialsBean customer,
 			FoodBean food) {
 		super();
 		this.cartType = cartType;
@@ -75,24 +85,16 @@ public class CartBean {
 		this.food = food;
 	}
 
-	public CartBean( String cartType, int cartQuantity, double cost, String orderDate,
-			CredentialsBean credential) {
-		super();
-		
-		this.cartType = cartType;
-		this.cartQuantity = cartQuantity;
-		this.cost = cost;
-		this.orderDate = orderDate;
-		this.customer = credential;
-	}
-
-	public CartBean(String cartType, int cartQuantity, double cost, String orderDate, FoodBean food) {
+	public CartBean(String cartType, int cartQuantity, double cost, LocalDate orderDate, CredentialsBean customer,
+			FoodBean food, Set<OrderBean> orders) {
 		super();
 		this.cartType = cartType;
 		this.cartQuantity = cartQuantity;
 		this.cost = cost;
 		this.orderDate = orderDate;
+		this.customer = customer;
 		this.food = food;
+		this.orders = orders;
 	}
 
 	public int getCartID() {
@@ -127,11 +129,11 @@ public class CartBean {
 		this.cost = cost;
 	}
 
-	public String getOrderDate() {
+	public LocalDate getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(String orderDate) {
+	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate = orderDate;
 	}
 

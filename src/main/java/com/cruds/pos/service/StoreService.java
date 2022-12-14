@@ -13,7 +13,7 @@ public interface StoreService {
 	
 	public boolean modifyStore(StoreBean storeBean) throws POSException;
 	
-	//public int removeStore(ArrayList<String> storeID);
+	public boolean removeStore(Long id);
 	
 	public StoreBean searchStore(String storeID);
 	

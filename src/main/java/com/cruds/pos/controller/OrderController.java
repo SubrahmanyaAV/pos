@@ -40,7 +40,7 @@ public class OrderController {
 		}
 		else
 		{
-			redirectAttributes.addFlashAttribute("error", "Unknown error while creating ordering!");
+			redirectAttributes.addFlashAttribute("error", "Unknown error while ordering!");
 		}
 		return "order";
 	}

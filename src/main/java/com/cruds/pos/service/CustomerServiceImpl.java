@@ -2,6 +2,7 @@ package com.cruds.pos.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public CartBean edit(int cartID) {
-		return dao.edit(cartID);
+		return dao.getByCartID(cartID);
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 */
 	@Override
-	public boolean addToCart(CartFormBean cart) throws POSException {
+	public boolean addToCartFood(CartFormBean cart) throws POSException {
 		CartBean cb = CartUtil.getCartBeanForSave(cart);
 		return dao.addToCart(cb);
 	}
@@ -79,6 +80,22 @@ public class CustomerServiceImpl implements CustomerService{
 	public OrderBean confirmOrder(OrderFormBean order, ArrayList<CartBean> cart) {
 		OrderBean ob = OrderUtil.getOrderSave(order);
 		return dao.confirmOrder(ob,cart);
+	}
+
+	@Override
+	public List<CartBean> list(Long customer_id) {
+		return dao.list(customer_id);
+	}
+
+	@Override
+	public void Update(CartBean cart) {
+		dao.Update(cart);
+		
+	}
+
+	@Override
+	public boolean addToCart(CartBean cart) throws POSException {
+		return dao.addToCart(cart);
 	}
 
 	

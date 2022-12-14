@@ -18,7 +18,7 @@
 
 		<div class="container well">
 			<span>
-				Hello <strong>${PROFILE.firstName}</strong>, Welcome to XYZ Pizza
+				Hello  , Welcome to XYZ Pizza
 			</span>
 		</div>
 
@@ -69,11 +69,11 @@
 	<a href="adminstore.html">Add Store</a>
 	<br />
 	<br />
-
-	<a href="user.html">User</a>
+ 
+<!-- 	<a href="userlist.html">User</a>
 	<br />
 	<br />
-	
+-->	
 	<a href="search.html">Search User</a>
 	<br />
 	<br />
@@ -81,7 +81,7 @@
 	<%
  		}
  	%>
-	<a href="user.html">Edit Profile</a>
+	<a href="userlist.html">Profile</a>
 	<br />
 	<br />
 
@@ -89,12 +89,7 @@
 	<br />
 	<br />
 	
-	<h3>Food</h3>	
-	<br/>
-	<br/>
-	
-	
-	<form action="cart.html" method="post">
+  	<form action="cart.html" method="post">
 		<label>Quantity </label> 
 		<input type="number" id="cartQuantity" name="cartQuantity" min="1" max="5" />
 		<br /> 
@@ -128,37 +123,40 @@
 		<input type="submit" value="add to cart" />
 		<br /><br />
 	</form>
-
-
-
-
-	<table cellpadding="2" cellspacing="2" border="1">
+ 
+ 	
+	<br /><br />
+	<p>image</p>
+	<br/>
+ 	<a href="cart.html"><button> add to cart</button></a>
+ 	
+ 	<br /><br /><br /><br />
+ 		<table border="1">
 		<thead>
 			<tr>
-				<td>id</td>
-				<td>Food Id</td>
-				<td>Food Name</td>
-				<td>Food Type</td>
-				<td>Food Size</td>
+				<td>CartID</td>
 				<td>Quantity</td>
-				<td>Price</td>
-				<td>Add</td>
+				<td>Type</td>
+				<td>Cost</td>
+				<td>Order Date</td>
+				<td>Customer ID</td>
+				<td>FoodID</td>
 			</tr>
 		</thead>
-
 		<tbody>
 
-			<c:forEach items="${FOOD}" var="f">
+			<c:forEach items="${CART}" var="c">
 
 				<tr>
-					<td><c:out value="${f.f_id}"></c:out></td>
-					<td><c:out value="${f.foodID}"></c:out></td>
-					<td><c:out value="${f.foodQuantity}"></c:out></td>
-					<td><c:out value="${f.foodSize}"></c:out></td>
-					<td><c:out value="${f.foodtype}"></c:out></td>
-					<td><c:out value="${f.name}"></c:out></td>
-					<td><c:out value="${f.price}"></c:out></td>
-					<td><a href="<c:url value='/food-add'/>"><button>Add To Cart</button></a></td>
+					<td><c:out value="${c.cartID}" /></td>
+					<td><c:out value="${c.cartQuantity}" /></td>
+					<td><c:out value="${c.FoodBean.type}"></c:out></td>
+					<td><c:out value="${c.cartType}" /></td>
+					<td><c:out value="${c.cost * c.cartQuantity}" /></td>
+					<td><c:out value="${c.orderDate}" /></td>
+					<td><c:out value="${c.customer_id}"/></td>
+					<td><c:out value="${c.foodID}"/></td>
+					<td><a href="<c:url value='/cart-edit-${c.cartID}'/>"><button>Modify</button></a></td>
 				</tr>
 
 			</c:forEach>
@@ -166,7 +164,8 @@
 		</tbody>
 	</table>
 
-
-
+ 	
+ 
+ 
 </body>
 </html>

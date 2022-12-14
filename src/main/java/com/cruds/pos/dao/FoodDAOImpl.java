@@ -27,7 +27,7 @@ public class FoodDAOImpl implements FoodDAO {
 	}
 
 
-	public FoodBean edit(String foodID) {
+	public FoodBean getByID(String foodID) {
 
 		Session session = sf.openSession();
 		String hql = "from FoodBean f where f.foodID = ? ";
@@ -59,12 +59,12 @@ public class FoodDAOImpl implements FoodDAO {
 	}
 
 	@Override
-	public boolean removeFood(String foodID) {
+	public boolean removeFood(Long f_id) {
 
 		Session session = sf.openSession();
 		session.beginTransaction();
 
-		FoodBean fb = (FoodBean) session.load(FoodBean.class, foodID);
+		FoodBean fb = (FoodBean) session.load(FoodBean.class, f_id);
 		session.delete(fb);	
 		session.getTransaction().commit();
 		session.close();
@@ -73,9 +73,22 @@ public class FoodDAOImpl implements FoodDAO {
 	}
 
 	@Override
-	public FoodBean viewFood(String foodID) {
-		// TODO Auto-generated method stub
-		return null;
+	public FoodBean viewFood(Long f_id) {
+		Session session = sf.openSession();
+		String hql = "from FoodBean c where c.f_id = ? ";
+
+		@SuppressWarnings("unchecked")
+		List<FoodBean> list = session.createQuery(hql).setLong(0, f_id).list();
+		session.close();
+
+		if(list.size() > 0)
+		{
+			return list.get(0);
+		}
+		else 
+		{
+			return null;
+		}	
 	}
 
 	@Override

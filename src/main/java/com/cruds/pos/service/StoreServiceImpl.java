@@ -25,11 +25,11 @@ public class StoreServiceImpl implements StoreService {
 		return dao.modifyStore(storeBean);
 	}
 
-	/*@Override
-	public int removeStore(Long id) {
+	@Override
+	public boolean removeStore(Long id) {
 		return dao.removeStore(id);
 	}
-	*/
+	
 	
 	/*public void removeStore(String storeID) {
 		

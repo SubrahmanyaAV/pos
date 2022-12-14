@@ -7,65 +7,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Page</title>
+<title>User List</title>
 </head>
 <body>
 
-  	<h3>User Details</h3>
-  	
-	<form:form action="user.html" method="post">
- 		<label>User ID</label>
-		<form:input path="userID" />
-		<br /> 
-		<label>Password</label> 
-		<form:input path="password" type="password" />     
-		<br /> 
-		
-		<label>FirstName</label>
-		<form:input path="firstName" />
-		<br />
-		<label>LastName</label>
-		<form:input path="lastName" />
-		<br />
-		<label>DOB</label>
-		<form:input type="date" placeholder="yyyy-MM-dd" path="dateOfBirth" />
-		<label>  yyyy/MM/dd</label>
-		<br />
-		<label>Gender</label>
-		<select name="gender" id="gender">
-			<option>Male</option>
-			<option>Female</option>
-			<option>I cannot disclose</option>
-		</select>
-		<br />
-		<label>Street</label>
-		<form:input path="street" />
-		<br />
-		<label>Location</label>
-		<form:input path="location" />
-		<br />
-		<label>City</label>
-		<form:input path="city" />
-		<br />
-		<label>State</label>
-		<form:input path="state" />
-		<br />
-		<label>Pincode</label>
-		<form:input path="pincode" />
-		<br />
-		<label>MobileNo</label>
-		<form:input path="mobileNo" />
-		<br />
-		<label>emailID</label>
-		<form:input path="emailID" />
-		<br />
-		<input type="submit" value="Create" />
+	<a href="home.html">Home</a>
+	<br/>
+	<br>
 
-	</form:form>
-	
-	<br /><br />
-	
-<%-- 	<h3>User Profile</h3>
+
+	<h3>User Profile</h3>
 
 	<table border="1">
 		<thead>
@@ -108,7 +59,8 @@
 
 		</tbody>
 	</table>
-	<br /><br />
+	<br />
+	<br />
 
 
 	<h3>User Credentials</h3>
@@ -134,16 +86,17 @@
 					<td><c:out value="${u.userID}"></c:out></td>
 					<td><c:out value="${u.password}"></c:out></td>
 					<td><c:out value="${u.loginStatus}"></c:out></td>
-					
-					<td><a href="<c:url value='/user-del-${u.id}'/>">Delete</a></td>
+
+					<%-- <td><c:out value="${u.profile_id}"></c:out></td> --%>
+					<%-- <td><a href="<c:url value='/user-del-${u.id}'/>">Delete</a></td> --%>
 				</tr>
 
 			</c:forEach>
 
 		</tbody>
 	</table>
-	
- --%>	
- 
+
+
+
 </body>
 </html>

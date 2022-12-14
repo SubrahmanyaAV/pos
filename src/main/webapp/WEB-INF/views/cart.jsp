@@ -25,6 +25,8 @@
 				<td>Type</td>
 				<td>Cost</td>
 				<td>Order Date</td>
+				<td>Customer ID</td>
+				<td>FoodID</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,7 +39,10 @@
 					<td><c:out value="${c.cartType}" /></td>
 					<td><c:out value="${c.cost * c.cartQuantity}" /></td>
 					<td><c:out value="${c.orderDate}" /></td>
+					<td><c:out value="${c.customer_id}"/></td>
+					<td><c:out value="${c.foodID}"/></td>
 					<td><a href="<c:url value='/cart-edit-${c.cartID}'/>"><button>Modify</button></a></td>
+					<td><a href="<c:url value='/order.html'/>"><button>Place Order</button></a></td>
 				</tr>
 
 			</c:forEach>
@@ -46,7 +51,6 @@
 	</table>
 
 
-	<br />
 	<br />
 	<br />
 	<a href="order.html"><button>Place Order</button> </a>

@@ -10,13 +10,14 @@ public interface FoodDAO {
 	
 	public void addFood(FoodBean foodBean);
 	
-	public FoodBean edit(String foodID);
+	public FoodBean getByID(String foodID);
 	
 	public boolean modifyFood(FoodBean foodbean)throws POSException;
 
-	public boolean removeFood(String foodID);
+	public boolean removeFood(Long f_id);
 	
-	public FoodBean viewFood(String foodID);
+	public FoodBean viewFood(Long f_id);
+	
 	
 	public ArrayList<FoodBean> viewAllFood(String storeID);
 	

@@ -53,6 +53,7 @@
 		</tbody>
 	</table>
 
+	<a href="home.html">Home </a>
 
 </body>
 </html>

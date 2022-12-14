@@ -53,7 +53,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 	
 	@Override
-	public CartBean edit(int cartID) {
+	public CartBean getByCartID(int cartID) {
 		Session session = sf.openSession();
 		String hql = "from CartBean c where c.cartID = ? ";
 
@@ -142,5 +142,22 @@ public class CustomerDAOImpl implements CustomerDAO{
 		session.close();
 		return list;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<CartBean> list(Long customer_id) {
+		// TODO Auto-generated method stub
+		return (List<CartBean>) sf.getCurrentSession().createQuery("from CartBean where customer_id = " + customer_id).list();
+	}
+
+	@Override
+	public void Update(CartBean cart) {
+		Session session = sf.openSession();
+		session.beginTransaction();
+		session.update(cart);
+		System.out.println(cart);
+		session.getTransaction().commit();
+		session.close();
+	}
+
 
 }

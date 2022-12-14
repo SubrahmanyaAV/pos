@@ -62,10 +62,21 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/userlist.html")
-	public String showUserPage()
+	public String showUserPage(Model model)
 	{
-		return "userlist";
+		model.addAttribute("profile", new CustomerFormBean());
+		model.addAttribute("PROFILE", userService.getAll());
+		model.addAttribute("CREDENTIALS", userService.getAllCredentials());
+		return "list";
 	}
+	
+	@RequestMapping(value="userlist.html" , method=RequestMethod.POST)
+	public String List(@ModelAttribute("CustomerFormBean") CustomerFormBean user )
+	{
+		System.out.println(user);
+		return "redirect:userlist.html";
+	}
+
 	
 /*	@RequestMapping(value="/user-del-{id}", method=RequestMethod.GET)
 	public String delete(@PathVariable("id") Long id)
@@ -88,7 +99,7 @@ public class UserController {
 	{
 		userService.update(user);
 		System.out.println(user);
-		return "redirect:user.html";
+		return "redirect:userlist.html";
 	}
 	
 	
@@ -144,7 +155,7 @@ public class UserController {
 	{
 		userService.inActivateUser(user);
 		System.out.println(user);
-		return "redirect:user.html";
+		return "redirect:userlist.html";
 	}
 
 
